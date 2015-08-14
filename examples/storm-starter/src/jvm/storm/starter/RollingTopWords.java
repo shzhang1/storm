@@ -75,7 +75,7 @@ public class RollingTopWords {
   }
 
   public void runRemotely() throws Exception {
-    StormRunner.runTopologyRemotely(builder.createTopology(), topologyName, topologyConfig);
+ //   StormRunner.runTopologyRemotely(builder.createTopology(), topologyName, topologyConfig);
   }
 
   /**

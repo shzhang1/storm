@@ -17,6 +17,7 @@
  */
 package storm.starter;
 
+//import backtype.storm.grouping.PartialKeyGrouping;
 import backtype.storm.Config;
 import backtype.storm.testing.TestWordSpout;
 import backtype.storm.topology.TopologyBuilder;
@@ -66,7 +67,7 @@ public class SkewedRollingTopWords {
     String intermediateRankerId = "intermediateRanker";
     String totalRankerId = "finalRanker";
     builder.setSpout(spoutId, new TestWordSpout(), 5);
-    builder.setBolt(counterId, new RollingCountBolt(9, 3), 4).partialKeyGrouping(spoutId, new Fields("word"));
+    //builder.setBolt(counterId, new RollingCountBolt(9, 3), 4).partialKeyGrouping(spoutId, new Fields("word"));
     builder.setBolt(aggId, new RollingCountAggBolt(), 4).fieldsGrouping(counterId, new Fields("obj"));
     builder.setBolt(intermediateRankerId, new IntermediateRankingsBolt(TOP_N), 4).fieldsGrouping(aggId, new Fields("obj"));
     builder.setBolt(totalRankerId, new TotalRankingsBolt(TOP_N)).globalGrouping(intermediateRankerId);
@@ -77,7 +78,7 @@ public class SkewedRollingTopWords {
   }
 
   public void runRemotely() throws Exception {
-    StormRunner.runTopologyRemotely(builder.createTopology(), topologyName, topologyConfig);
+  //  StormRunner.runTopologyRemotely(builder.createTopology(), topologyName, topologyConfig);
   }
 
   /**

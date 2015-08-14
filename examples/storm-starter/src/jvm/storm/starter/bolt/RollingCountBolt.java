@@ -25,7 +25,7 @@ import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
-import backtype.storm.utils.TupleUtils;
+//import backtype.storm.utils.TupleUtils;
 import org.apache.log4j.Logger;
 import storm.starter.tools.NthLastModifiedTimeTracker;
 import storm.starter.tools.SlidingWindowCounter;
@@ -95,13 +95,13 @@ public class RollingCountBolt extends BaseRichBolt {
 
   @Override
   public void execute(Tuple tuple) {
-    if (TupleUtils.isTick(tuple)) {
-      LOG.debug("Received tick tuple, triggering emit of current window counts");
-      emitCurrentWindowCounts();
-    }
-    else {
-      countObjAndAck(tuple);
-    }
+//    if (TupleUtils.isTick(tuple)) {
+//      LOG.debug("Received tick tuple, triggering emit of current window counts");
+//      emitCurrentWindowCounts();
+//    }
+//    else {
+//      countObjAndAck(tuple);
+//    }
   }
 
   private void emitCurrentWindowCounts() {
